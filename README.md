@@ -5,7 +5,7 @@
 
 **Date:** 12/03/25
 
-![System Demo](Media/demo.mp4)
+![System Demo](Media/demoGIF.gif)
 
 This project implements a real-time distance-sensing parking aid designed for the STM32L152RE (ARM Cortex-M3) platform. The system provides immediate visual and auditory feedback to assist drivers in obstructed or low-visibility environments. It was developed as a complete embedded solution, spanning from initial KiCad schematic design to a hand-soldered hardware prototype.
 
@@ -27,7 +27,7 @@ Uses buzzers, lights, an LCD screen, and an ultrasonic sensor to provide a simpl
 ## Hardware Spec
 The hardware was designed in KiCad and hand-soldered onto a protoboard shield.
 
-[View Full Hardware Schematic and Layout (PDF)](Media/Project Layout.pdf)
+[View Full Hardware Schematic and Layout (PDF)](Media/project_layout.jpg)
 
 ### Pin Mapping
 | Peripheral | STM32 Pin | Mode | Purpose |
