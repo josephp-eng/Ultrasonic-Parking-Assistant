@@ -1,1 +1,26 @@
 Hardware/Project Layout Hardware EE3174/.history/
+# Build artifacts
+Debug/
+Release/
+*.elf
+*.bin
+*.map
+*.hex
+*.list
+*.o
+*.d
+*.su
+
+# IDE-specific (STM32CubeIDE / Eclipse)
+.settings/
+.launches/
+*.launch
+
+# KiCad autosaves and history
+**/.history/
+*.bak
+*-backups/
+_autosave-*
+*.kicad_pcb-bak
+*.kicad_sch-bak
+fp-info-cache
