@@ -41,7 +41,7 @@ graph TD
 ## Hardware Spec
 The hardware was designed in KiCad and hand-soldered onto a protoboard shield.
 
-[View Full Hardware Schematic and Layout (PDF)](Media/Project_Layout.pdf)
+[View Full Hardware Schematic and Layout (PDF)](Media/Project Layout.pdf)
 
 ### Pin Mapping
 | Peripheral | STM32 Pin | Mode | Purpose |
