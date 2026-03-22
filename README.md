@@ -27,7 +27,7 @@ Uses buzzers, lights, an LCD screen, and an ultrasonic sensor to provide a simpl
 ## Hardware Spec
 The hardware was designed in KiCad and hand-soldered onto a protoboard shield.
 
-[View Full Hardware Schematic and Layout (PDF)](Media/project_layout.jpg)
+[Hardware Schematic](Media/project_layout.jpg)
 
 ### Pin Mapping
 | Peripheral | STM32 Pin | Mode | Purpose |
