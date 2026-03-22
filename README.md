@@ -11,27 +11,13 @@ This project implements a real-time distance-sensing parking aid designed for th
 
 Uses buzzers, lights, an LCD screen, and an ultrasonic sensor to provide a simple yet effective reverse-parking assistant.
 
+*This project was completed for my Embedded Microcontrollers class at Michigan Tech. Be aware that the project files are named with 'EE3174' and 'JP' exactly how they were submitted for the class.*
+
 ## System Capabilities
 * **Dynamic Range Calibration:** A 10k potentiometer is polled via ADC1 to set the "STOP" distance threshold (20cm - 150cm) in real time.
 * **Signal Conditioning:** Implements a median-of-3 filter to eliminate ultrasonic sensor noise and software hysteresis to prevent LED/LCD flickering at band boundaries.
 * **Contextual User Interface:** A single interrupt-driven button supports short-press (Mute) and long-press (System Enable/Disable) actions.
 * **Non-Blocking Logic:** The buzzer PWM and LCD I2C updates are managed via state-machine logic to ensure the system remains responsive without utilizing CPU-halting delays.
-
-### Logic Flow
-```mermaid
-graph TD
-    A[Start] --> B[Initialize Peripherals]
-    B --> C[Self-Test: Buzzer Chirp]
-    C --> D[Loop]
-    D --> E[Read ADC: Update Stop Threshold]
-    E --> F[Trigger HC-SR04 Sensor]
-    F --> G[TIM2 Capture: Pulse Calculation]
-    G --> H[Apply Median Filter & Hysteresis]
-    H --> I{Distance Analysis}
-    I --> J[Update RGB LED & Buzzer PWM]
-    J --> K[Update LCD Cache]
-    K --> D
-```
 
 | State | Visual | Description |
 | :--- | :--- | :--- |
@@ -69,3 +55,37 @@ The transition from schematic to a soldered prototype involved significant hardw
 * **Voltage Rail Optimization:** Initial smoke testing revealed that the HC-SR04 and I2C LCD were underperforming on the 3.3V rail. The power domain was shifted to 5V while maintaining logic compatibility with the STM32's 5V-tolerant pins, resulting in stable sensor pings and clear LCD contrast.
 * **Hardware Isolation:** A grounding failure on the piezo buzzer was identified late in the assembly phase. By isolating the buzzer subsystem and performing continuity tests, the fault was traced to a cold solder joint on the common ground plane and rectified.
 * **OOR Logic:** Specialized handling was implemented for Out-of-Range measurements to prevent the system from reporting "ghost" distances or running the UI unnecessarily when the path is clear.
+
+### Logic Flow
+```mermaid
+graph TD
+    A[Start] --> B[Initialize Peripherals]
+    B --> C[Self-Test: Buzzer Chirp]
+    C --> D[Loop]
+    D --> E[Read ADC: Update Stop Threshold]
+    E --> F[Trigger HC-SR04 Sensor]
+    F --> G[TIM2 Capture: Pulse Calculation]
+    G --> H[Apply Median Filter & Hysteresis]
+    H --> I{Distance Analysis}
+    I --> J[Update RGB LED & Buzzer PWM]
+    J --> K[Update LCD Cache]
+    K --> D
+```
+
+## How to Run
+
+### Hardware
+* Wire the components according the to **Pin Mapping** table and the KiCad schematic `project_layout.jpg`
+* Connect the STM32 Nucleo-64 board via Mini-USB to your device
+
+### Software
+* Open **STM32CubeIDE**.
+* Import the project from the `/final_parkingAssistant_JP` directory.
+* Open the `.ioc` file to verify the Clock Configuration (ensure the HCLK is set correctly for the Timer prescalers).
+* Build the project to generate the `.elf` or `.bin` file.
+* Connect your Nucleo board and click **Run** to flash the firmware.
+
+### Usage
+* Upon startup, the system will perform a short buzzer "chirp" to confirm the PWM and Piezo are functional.
+* Adjust the **Potentiometer** to set your desired stopping distance.
+* Use the **Button** to toggle the mute state ('M') or long-press to enter standby mode.
