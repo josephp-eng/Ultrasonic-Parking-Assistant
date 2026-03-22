@@ -1,0 +1,22 @@
+# Build artifacts
+Debug/
+Release/
+*.elf
+*.bin
+*.map
+*.hex
+*.list
+*.o
+*.d
+*.su
+
+# IDE-specific (STM32CubeIDE / Eclipse)
+.settings/
+.launches/
+*.launch
+
+# KiCad temporary files
+*.bak
+*-backups/
+*.kicad_pcb-bak
+fp-info-cache
